@@ -10,5 +10,6 @@ public interface TranslationsRepository extends JpaRepository<Translations ,Long
 
     
     public Optional<Translations>  findBysourceText(String sourceText) ;
-    
+
+
 }

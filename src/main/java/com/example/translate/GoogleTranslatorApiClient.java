@@ -1,10 +1,19 @@
 package com.example.translate;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.stereotype.Component;
+@Component
 public class GoogleTranslatorApiClient {
-    @Autowired
-    public void translate(){
+    
+     public String translate(String sourceLang, String targetLang, String text) {
+        // String translatedText = null;
 
+        // String requestJson = JsonHelper.toJson(sourceLang, targetLang, text);
+        // HttpResponse<String> response = HttpHelper.post(requestJson);
+
+        // translatedText = JsonHelper.getTranslatedText(response.body());
+
+        // return translatedText;
+        return text ;
     }
 }

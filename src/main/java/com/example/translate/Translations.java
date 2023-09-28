@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 public class Translations {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+    @Column(name = "id")
     private Long Id ;
 
     @Column(name = "source_language")
