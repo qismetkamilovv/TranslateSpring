@@ -1,6 +1,5 @@
 package com.example.translate;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
 
 public class TranslateRequest {
@@ -8,7 +7,7 @@ public class TranslateRequest {
     private String text ;
     private String target ;
     private String source ;
-    @Autowired
+    
     public TranslateRequest (String text , String target, String source){
         this.target = target ;
         this.source = source ;
