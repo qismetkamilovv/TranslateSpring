@@ -1,0 +1,22 @@
+1 spring boot ;
+    dependency injection.   https://www.springboottutorial.com/introduction-to-spring-boot-for-beginners
+spring web ;                https://docs.spring.io/spring-framework/reference/core/beans/introduction.html
+spring data/jpa ;
+2 java annotation ;           https://www.digitalocean.com/community/tutorials/spring-annotations
+3 endpoint ;
+4 Http methods ;
+internet nedir ;
+
+translatorapp bulk fixxing ;
+
+Spring Boot -da http call-ları necə edəcəksən araşdır;
+
+
+
+
+=====================================================================================================
+- Create new package/folders for res of classes like I did with `service` and `entity`
+    for exmaple you can create `repository` package and move Repositry classes to this package ( what how we structure our Spring project)
+- Learn how to read data from `HTTP POST request` body to your `DTO`/`POJO` (Data Transfer Object) / (Plain old java object)
+- Learn how to call external API using Spring's `RestTemplate`
+- Instead of using raw SQL to save data to DB use Spring jpa/data (learn first)

@@ -1,4 +1,4 @@
-package com.example.translate;
+package com.example.translate.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,7 +14,7 @@ public class Translations {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long Id ;
+    private Long Id ; // todo rename to all lowercase
 
     @Column(name = "source_language")
     private String sourceLanguage ;
@@ -33,9 +33,11 @@ public class Translations {
     }
 
     public void setId(Long id) {
+        // TODO this.id = id
         Id = id;
     }
 
+    // TODO rename method and argumeters to camel case
     public String getSource_language() {
         return sourceLanguage;
     }

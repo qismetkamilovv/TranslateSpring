@@ -1,6 +1,4 @@
-package com.example.translate;
-
-
+package com.example.translate.entity;
 
 public class TranslateRequest {
     

@@ -1,9 +1,12 @@
-package com.example.translate;
+package com.example.translate.service;
 
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
 import org.springframework.stereotype.Service;
+
+import com.example.translate.GoogleTranslatorApiClient;
+import com.example.translate.TranslateRepository;
 
 @Service
 public class TranslateServiceImpl implements TranslateService {
