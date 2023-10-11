@@ -1,4 +1,4 @@
-package com.example.translate;
+package com.example.translate.service;
 
 public interface TranslateService {
     String translate(String word);

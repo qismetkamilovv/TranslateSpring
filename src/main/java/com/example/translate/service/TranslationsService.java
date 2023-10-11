@@ -1,14 +1,18 @@
-package com.example.translate;
+package com.example.translate.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestTemplate;
 
+import com.example.translate.TranslationsRepository;
+import com.example.translate.entity.Translations;
+
+// TODO implment TranslateService interface and implement all methods of this interface using Spring JPA/DATA
 @Service
 public class TranslationsService {
+
    
     private final TranslationsRepository translationsRepository;
 
@@ -30,5 +34,6 @@ public class TranslationsService {
 
     public Translations getBysourceText(@PathVariable String sourceText) {
         return translationsRepository.findBysourceText(sourceText).orElse(null);
+
     }
 }
