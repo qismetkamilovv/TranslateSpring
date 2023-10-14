@@ -1,10 +1,6 @@
 package com.example.translate.service;
 
-import java.util.List;
-
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,28 +12,27 @@ import com.example.translate.repository.TranslationsRepository;
 
 // TODO implment TranslateService interface and implement all methods of this interface using Spring JPA/DATA
 @Service
-public class TranslationsService {
+public class TranslationsService implements TranslateService {
 
    
     private final TranslationsRepository translationsRepository;
 
     private final RestTemplate restTemplate;
-
+    @Autowired
     public TranslationsService(RestTemplate restTemplate, TranslationsRepository translationsRepository) {
         this.restTemplate = restTemplate;
         this.translationsRepository = translationsRepository ;
     }
     public void postData(String data){
-        String url = "ya29.a0AfB_byDvRUrXXF3jk2RkZVnRJmgiQXsYiempO03_O-RagRJQKDkxgKA_4QZr-sEz8udSH3vB9iK7j4QCeDDwH5wRNo2yb44B0HbLCuCZuRhEQ4iQPMkT5jd5Z88sRXL1pHTfHcJdG9ELleXh8cUvMyy3bg47Gc702Fn9OM0UQjgpaCgYKAQMSARESFQGOcNnC0t4KmUIJP38vzEbWO6rjrg0179" ;
+        String url = "ya29.a0AfB_byApwyVDWxDt0KTee4u-FmPX9Fds1qhqnvTOgibQD-4KmZuKIG4mLkVmFIF2mdf_P13PFmQJ1FOwnV5SQ-fcg9oEAgBPpGrCAaCXNVHwGf9DYMMRw6cmBy1wtwn5qREtS3ZTdVsDVAdNgBfVtBvp5Ag53MJ6iDfePNlKMo8TaCgYKAZ4SARESFQGOcNnChyb_uOzdROdiW8_YzlfWIA0179" ;
         try {
             ResponseEntity<String> response = restTemplate.postForEntity( url, data, String.class) ;
             int statusCode= response.getStatusCodeValue();
             if (statusCode >= 200 && statusCode < 300) {
-                // Başarılı yanıt
+                
                 String responseBody = response.getBody();
                 System.out.println("POST succed, output: " + responseBody);
             } else {
-                // Başarısız yanıt
                 System.out.println("POST unsucced, error code: " + statusCode);
             }
         
@@ -46,7 +41,19 @@ public class TranslationsService {
             System.out.println("POST unsucced, error code: " + e.getRawStatusCode());
         }
 
-        }
+    }
+    @Override
+    public String translate(String word) {
+        return null;
+    }
+    @Override
+    public String translate(String word, String targetLang) {
+        return null ;
+    }
+    @Override
+    public String translate(String word, String sourceLang, String targetLang) {
+        return null ;
+    }
     
 
     // public String FetchDataFromApi() {
@@ -58,8 +65,10 @@ public class TranslationsService {
     //     return translationsRepository.findAll();
     // }
 
-    // public Translations getBysourceText(@PathVariable String sourceText) {
-    //     return translationsRepository.findBysourceText(sourceText).orElse(null);
+    public Translations getBysourceText(@PathVariable String sourceText) {
+        return translationsRepository.findBysourceText(sourceText).orElse(null);
+    }
 
-    // }
+    
 }
+

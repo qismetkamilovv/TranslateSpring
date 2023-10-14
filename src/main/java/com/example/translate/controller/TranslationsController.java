@@ -1,4 +1,4 @@
-package com.example.translate;
+package com.example.translate.controller;
 
 import java.util.List;
 
@@ -9,14 +9,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.translate.entity.Translations;
+import com.example.translate.repository.TranslationsRepository;
+import com.example.translate.service.TranslateService;
 
 @RestController
 @RequestMapping
 public class TranslationsController {
 
-    // HERE autowire service class now repository
+    private TranslateService translateService;
+
     @Autowired
     private TranslationsRepository translationsRepository;
+
+    @Autowired
+    public TranslationsController(TranslateService translateService) {
+        this.translateService = translateService;
+    }
 
     @GetMapping
     public List<Translations> getAll() {

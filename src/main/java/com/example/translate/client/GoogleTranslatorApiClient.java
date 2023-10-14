@@ -1,4 +1,4 @@
-package com.example.translate;
+package com.example.translate.client;
 
 
 import org.springframework.stereotype.Component;

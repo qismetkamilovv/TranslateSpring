@@ -1,4 +1,4 @@
-package com.example.translate;
+package com.example.translate.repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

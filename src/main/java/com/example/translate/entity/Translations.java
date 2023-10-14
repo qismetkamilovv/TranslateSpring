@@ -33,8 +33,8 @@ public class Translations {
     }
 
     public void setId(Long id) {
-        // TODO this.id = id
-        Id = id;
+        this.Id = id ;
+        
     }
 
     // TODO rename method and argumeters to camel case

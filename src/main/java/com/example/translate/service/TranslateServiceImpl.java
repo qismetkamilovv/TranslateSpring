@@ -5,8 +5,8 @@ import java.util.logging.Level;
 
 import org.springframework.stereotype.Service;
 
-import com.example.translate.GoogleTranslatorApiClient;
-import com.example.translate.TranslateRepository;
+import com.example.translate.client.GoogleTranslatorApiClient;
+import com.example.translate.repository.TranslateRepository;
 
 @Service
 public class TranslateServiceImpl implements TranslateService {
