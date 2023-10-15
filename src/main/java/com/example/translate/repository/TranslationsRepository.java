@@ -10,6 +10,6 @@ import com.example.translate.entity.Translations;
 @Repository
 public interface TranslationsRepository extends JpaRepository<Translations, Long > {
 
-    public Optional<Translations>  findBysourceText(String sourceText) ;
+    public Optional<Translations>  findBySourceText(String sourceText) ;
 
 }
