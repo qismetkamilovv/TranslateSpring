@@ -20,4 +20,8 @@ Spring Boot -da http call-ları necə edəcəksən araşdır;
 - Learn how to read data from `HTTP POST request` body to your `DTO`/`POJO` (Data Transfer Object) / (Plain old java object)
 - Learn how to call external API using Spring's `RestTemplate`
 - Instead of using raw SQL to save data to DB use Spring jpa/data (learn first)
+
+
  // TODO read about Optional class, what it does and how can you use it.
+ - refactoring serviceimpl
+ - test

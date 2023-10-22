@@ -37,37 +37,36 @@ public class Translations {
         
     }
 
-    // TODO rename method and argumeters to camel case
-    public String getSource_language() {
+    public String getSourceLanguage() {
         return sourceLanguage;
     }
 
-    public void setSource_language(String source_language) {
-        this.sourceLanguage = source_language;
+    public void setSourceLanguage(String sourcelanguage) {
+        this.sourceLanguage = sourcelanguage;
     }
 
-    public String getTarget_language() {
+    public String getTargetLanguage() {
         return targetLanguage;
     }
 
-    public void setTarget_language(String target_language) {
-        this.targetLanguage = target_language;
+    public void setTargetLanguage(String targetlanguage) {
+        this.targetLanguage = targetlanguage;
     }
 
-    public String getSource_text() {
+    public String getSourceText() {
         return sourceText;
     }
 
-    public void setSource_text(String source_text) {
-        this.sourceText = source_text;
+    public void setSourceText(String sourcetext) {
+        this.sourceText = sourcetext;
     }
 
-    public String getTranslated_text() {
+    public String getTranslatedText() {
         return translatedText;
     }
 
-    public void setTranslated_text(String translated_text) {
-        this.translatedText = translated_text;
+    public void setTranslatedText(String translatedtext) {
+        this.translatedText = translatedtext;
     }
 
     

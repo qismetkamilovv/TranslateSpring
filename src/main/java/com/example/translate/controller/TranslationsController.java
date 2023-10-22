@@ -21,18 +21,38 @@ public class TranslationsController {
         this.service = service;
     }
 
-    @GetMapping
+    @GetMapping("all")
     public List<Translations> getAll() {
         return service.getAll();
     }
 
-    @GetMapping("/{source_text}")
+    @GetMapping("get/{sourceText}")
     public Translations getsBysourceText(@PathVariable String sourceText) {
         return service.getBySourceText(sourceText);
     }
-    @PostMapping
+
+    @GetMapping("get")
+    public Translations translationSearch(@RequestParam("source") String sourceLang,
+    @RequestParam("target") String targetLang){
+        return service.translationSearch(targetLang, targetLang);
+    }
+
+    @PostMapping("translate")
     public String translate(@RequestParam String text){
         return service.translate(text);
     }
+
+    @PostMapping("translate/withTarget")
+    public String translate(@RequestParam String text,@RequestParam("target") String targetLang ){
+        return service.translate(text, targetLang);
+    }
+
+    @PostMapping("translate/withSource")
+    public String translate(@RequestParam String text,
+    @RequestParam("target") String targetLang,
+    @RequestParam("source") String sourceLang){
+        return service.translate(text, targetLang, sourceLang);
+    }
+    
 }
  

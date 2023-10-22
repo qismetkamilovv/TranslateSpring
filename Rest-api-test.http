@@ -1,1 +1,13 @@
-POST http://localhost:8080?text=tree
+POST http://localhost:8080/translate/withTarget?text=success&target=az
+
+###
+GET http://localhost:8080/all
+
+###
+GET http://localhost:8080/get/success
+
+###
+POST http://localhost:8080/translate?text=not only but also
+
+###
+POST http://localhost:8080/translate/withSource?source=en&text=cat&target=ru

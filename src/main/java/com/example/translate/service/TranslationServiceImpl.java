@@ -1,11 +1,8 @@
 package com.example.translate.service;
 
 import java.util.List;
-
+import java.util.Optional;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.client.RestTemplate;
-
 import com.example.translate.client.GoogleTranslatorApiClient;
 import com.example.translate.entity.Translations;
 import com.example.translate.repository.TranslationsRepository;
@@ -16,47 +13,79 @@ public class TranslationServiceImpl implements TranslationService {
     public final static String SOURCE_LANG = "en";
     public final static String TARGET_LANG = "az";
 
-    private final GoogleTranslatorApiClient googleClient ;
+    private final GoogleTranslatorApiClient googleClient;
     private final TranslationsRepository repository;
-    private final RestTemplate restTemplate;
 
-    public TranslationServiceImpl(GoogleTranslatorApiClient googleClient, RestTemplate restTemplate, TranslationsRepository translationsRepository) {
-        this.restTemplate = restTemplate;
+    public TranslationServiceImpl(GoogleTranslatorApiClient googleClient,
+            TranslationsRepository translationsRepository) {
         this.repository = translationsRepository;
-        this.googleClient = googleClient ;
+        this.googleClient = googleClient;
     }
 
     @Override
     public String translate(String text) {
-        repository.findBySourceText(text).map(t->t.getTranslated_text()).orElseGet(()->{
-            
-            return null ;
-        });
-        return null;
+        Optional<Translations> opt = repository.findBySourceText(text);
+        if (opt.isPresent()) {
+            return opt.get().getTranslatedText();
+        }
+        String translatedTxt = googleClient.translate(SOURCE_LANG, TARGET_LANG, text) ;
+        Translations translations = new Translations();
+        translations.setSourceLanguage(SOURCE_LANG);
+        translations.setTargetLanguage(TARGET_LANG);
+        translations.setSourceText(text) ;
+        translations.setTranslatedText(translatedTxt);
+        repository.save(translations);
+        return translatedTxt ;
     }
 
     @Override
     public String translate(String word, String targetLang) {
-        return null;
+        Optional<Translations> trs = repository.findBySourceText(word) ;
+        if(trs.isPresent()){
+            return trs.get().getTranslatedText();
+        }
+        String translatedTxt = googleClient.translate(SOURCE_LANG, targetLang, word);
+        Translations translations = new Translations();
+        translations.setSourceLanguage(SOURCE_LANG);
+        translations.setTargetLanguage(targetLang);
+        translations.setSourceText(word);
+        translations.setTranslatedText(translatedTxt);
+        repository.save(translations);
+        return translatedTxt;
     }
 
     @Override
-    public String translate(String word, String sourceLang, String targetLang) {
-        return null;
+    public String translate(String sourceLang,String word , String targetLang) {
+        Optional<Translations> trs = repository.findBySourceTextAndTargetLang(word,targetLang) ;
+        if(trs.isPresent()){
+            return trs.get().getTranslatedText();
+        }
+        String translatedTxt = googleClient.translate(sourceLang,word , targetLang);
+        Translations translations = new Translations();
+        translations.setSourceLanguage(sourceLang);
+        translations.setSourceText(word);
+        translations.setTargetLanguage(targetLang);
+        translations.setTranslatedText(translatedTxt);
+        repository.save(translations);
+        return translatedTxt;
     }
 
-    // public String FetchDataFromApi() {
-    // String url =
-    // "ya29.a0AfB_byCoz83ZNrjGThajVJUOGW1NBqic6T5GgAX5p3N8myUjpnZpOEDTUeyU1DXz2qAreYT1YKeFuwxStluGyttRObOpaxmc96fOoxex4SQcVOOBo6zWduxcAM8HzAE7YyTKNRd9cm4aa1M28KmGn4j7PYEKqtwda9UHN1kfE92maCgYKAU8SARESFQGOcNnCLRo9uZNdLAQAZZcddtCGVQ0179";
-    // return restTemplate.getForObject(url, String.class);
-    // }
-
     public List<Translations> getAll() {
-    return repository.findAll();
+        return repository.findAll();
     }
 
     public Translations getBySourceText(String sourceText) {
         return repository.findBySourceText(sourceText).orElse(null);
+    }
+
+    @Override
+    public Translations translationSearch(String sourceLang, String targetLang) {
+        return repository.translationSearch(sourceLang, targetLang);
+    }
+
+    @Override
+    public Optional<Translations> findBySourceTextAndTargetLang(String sourceText, String targetLanguage) {
+        return repository.findBySourceTextAndTargetLang(targetLanguage, targetLanguage);
     }
 
 }
