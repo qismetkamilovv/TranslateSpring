@@ -12,7 +12,7 @@ public interface TranslationsRepository extends JpaRepository<Translations, Long
 
     Optional<Translations>  findBySourceText(String sourceText) ;
 
-    Optional<Translations> findBySourceTextAndTargetLang(String sourceText, String targetLanguage);
+    Optional <Translations> findBySourceTextAndTargetLang(String sourceText, String targetlang);
 
-    Translations translationSearch(String sourceText, String targetlang) ;
+    Translations translationSearch(String sourceText, String targetLang) ;
 }

@@ -18,6 +18,6 @@ public interface TranslationService {
 
     Translations translationSearch(String sourceText, String targetLang) ;
 
-    Optional<Translations> findBySourceTextAndTargetLang(String sourceLang, String targetLanguage);
+    Optional<Translations> findBySourceTextAndTargetLang(String sourceText, String targetLang);
 
 }

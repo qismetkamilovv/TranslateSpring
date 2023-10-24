@@ -56,7 +56,7 @@ public class TranslationServiceImpl implements TranslationService {
 
     @Override
     public String translate(String sourceLang,String word , String targetLang) {
-        Optional<Translations> trs = repository.findBySourceTextAndTargetLang(word,targetLang) ;
+        Optional<Translations> trs = repository.findBySourceTextAndTargetLang(sourceText, targetLang) ;
         if(trs.isPresent()){
             return trs.get().getTranslatedText();
         }
@@ -79,13 +79,13 @@ public class TranslationServiceImpl implements TranslationService {
     }
 
     @Override
-    public Translations translationSearch(String sourceLang, String targetLang) {
-        return repository.translationSearch(sourceLang, targetLang);
+    public Translations translationSearch(String sourceText, String targetLang) {
+        return repository.translationSearch(sourceText, targetLang);
     }
 
     @Override
-    public Optional<Translations> findBySourceTextAndTargetLang(String sourceText, String targetLanguage) {
-        return repository.findBySourceTextAndTargetLang(targetLanguage, targetLanguage);
+    public Optional<Translations> findBySourceTextAndTargetLang(String sourceText, String targetLang) {
+        return repository.findBySourceTextAndTargetLang(sourceText, targetLang);
     }
 
 }

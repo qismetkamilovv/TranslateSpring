@@ -32,9 +32,9 @@ public class TranslationsController {
     }
 
     @GetMapping("get")
-    public Translations translationSearch(@RequestParam("source") String sourceLang,
-    @RequestParam("target") String targetLang){
-        return service.translationSearch(targetLang, targetLang);
+    public Translations translationSearch(@RequestParam("source") String sourceText,
+        @RequestParam("target") String targetLang){
+        return service.translationSearch(sourceText, targetLang);
     }
 
     @PostMapping("translate")
@@ -49,8 +49,8 @@ public class TranslationsController {
 
     @PostMapping("translate/withSource")
     public String translate(@RequestParam String text,
-    @RequestParam("target") String targetLang,
-    @RequestParam("source") String sourceLang){
+        @RequestParam("target") String targetLang,
+        @RequestParam("source") String sourceLang){
         return service.translate(text, targetLang, sourceLang);
     }
     
