@@ -24,7 +24,7 @@ public class GoogleTranslatorApiClient {
     public String translate(String sourceLang, String targetLang, String text) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set("Authorization", "Bearer ya29.a0AfB_byC7kscakQTeyzQYutykoE7BYyRMIOdGituU6SpSy-E2Min8RTPrDJcJQfikaMq-OoDjm_Req1n-GfH8ScJ5jzwr0U92N7-W4VxYeVPiaEMpCdcu1IAZMzgNZzUwzIpco7Kke2FHyAGJpSdszkz4jE-FvU90Nky8lv6zyucaCgYKASoSARESFQGOcNnCrMO5IKvVC1azDfu2IWRopg0178");
+        headers.set("Authorization", "Bearer ya29.a0AfB_byBnajBVjtJw60wR45F3TMQ298jWdSoJPHOygOZZcPVokeVGjXYINWCviV9PLnVGT446xcqKJIrtIr0AIhGZkd4D05z19Cs9AldYN9nT3mkpMBAqYRRraNHw-9H_zM9jBsbgU1YjiIn0Qlg0klj5TduByX-5MIsb_DtJLmAaCgYKAYsSARESFQGOcNnC1_f6WRJvVC7R5WXG0KDy5Q0178");
         headers.set("x-Goog-User-Project", "translatorapp-398317");
         headers.set("Content-type", "application/json;charset=utf-8");
 

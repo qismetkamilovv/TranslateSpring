@@ -79,13 +79,13 @@ public class TranslationServiceImpl implements TranslationService {
     }
 
     @Override
-    public Translations translationSearch(String sourceText, String targetLang) {
+    public Optional <Translations> translationSearch(String sourceText, String targetLang) {
         return repository.translationSearch(sourceText, targetLang);
     }
 
     @Override
-    public Optional<Translations> findBySourceTextAndTargetLang(String sourceText, String targetLang) {
-        return repository.findBySourceTextAndTargetLang(sourceText, targetLang);
+    public Optional<Translations> findBySourceTextAndTargetLang(String word, String targetLang) {
+        return repository.findBySourceTextAndTargetLang(word, targetLang);
     }
 
 }
