@@ -1,5 +1,6 @@
 package com.example.translate.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,7 +13,13 @@ public interface TranslationsRepository extends JpaRepository<Translations, Long
 
     Optional<Translations>  findBySourceText(String sourceText) ;
 
-    Optional <Translations> findBySourceTextAndTargetLang(String word, String targetlang);
+    Optional <Translations> findBySourceTextAndTargetLanguage(String word, String targetlang);
 
-    Optional <Translations> translationSearch(String sourceText, String targetLang) ;
+    List<Translations> findAllByTargetLanguage(String targetLang) ;
+
+    List<Translations> findAllBySourceLanguage(String sourcelang) ;
+
+    List <Translations> findAllBySourceLanguageAndTargetLanguage(String sourceLang, String targetLang);
+
+
 }

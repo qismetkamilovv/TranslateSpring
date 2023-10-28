@@ -56,7 +56,7 @@ public class TranslationServiceImpl implements TranslationService {
 
     @Override
     public String translate(String sourceLang,String word , String targetLang) {
-        Optional<Translations> trs = repository.findBySourceTextAndTargetLang(word, targetLang) ;
+        Optional<Translations> trs = repository.findBySourceTextAndTargetLanguage(word, targetLang) ;
         if(trs.isPresent()){
             return trs.get().getTranslatedText();
         }
@@ -74,18 +74,29 @@ public class TranslationServiceImpl implements TranslationService {
         return repository.findAll();
     }
 
-    public Translations getBySourceText(String sourceText) {
+    public Translations findBySourceText(String sourceText) {
         return repository.findBySourceText(sourceText).orElse(null);
     }
 
     @Override
-    public Optional <Translations> translationSearch(String sourceText, String targetLang) {
-        return repository.translationSearch(sourceText, targetLang);
+    public Optional<Translations> findBySourceTextAndTargetLanguage(String word, String targetLang) {
+        return repository.findBySourceTextAndTargetLanguage(word, targetLang);
     }
 
     @Override
-    public Optional<Translations> findBySourceTextAndTargetLang(String word, String targetLang) {
-        return repository.findBySourceTextAndTargetLang(word, targetLang);
+    public List<Translations> findAllByTargetLanguage(String targetLang) {
+        return repository.findAllByTargetLanguage(targetLang) ;
     }
+
+    @Override
+    public List<Translations> findAllBySourceLanguage(String sourceLang) {
+       return repository.findAllBySourceLanguage(sourceLang) ;
+    }
+
+    @Override
+    public List<Translations> findAllBySourceLanguageAndTargetLanguage(String sourceLang, String targetLang) {
+        return repository.findAllBySourceLanguageAndTargetLanguage(sourceLang,targetLang);
+    }
+
 
 }

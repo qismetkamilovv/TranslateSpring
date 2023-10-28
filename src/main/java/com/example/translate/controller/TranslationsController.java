@@ -1,6 +1,7 @@
 package com.example.translate.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,16 +28,26 @@ public class TranslationsController {
     }
 
     @GetMapping("get/{sourceText}")
-    public Translations getsBysourceText(@PathVariable String sourceText) {
-        return service.getBySourceText(sourceText);
+    public Translations findBysourceText(@PathVariable String sourceText) {
+        return service.findBySourceText(sourceText);
     }
 
-    @GetMapping("get")
-    public Translations translationSearch(@RequestParam("source") String sourceText,
-        @RequestParam("target") String targetLang){
-        return service.translationSearch(sourceText, targetLang);
+    @GetMapping("getTarg/{targetLang}")
+    public List<Translations> findAllByTargetLanguage(@PathVariable String targetLang){
+        return service.findAllByTargetLanguage(targetLang);
     }
 
+    @GetMapping("getSour/{sourceLang}")
+    public List<Translations> findAllBySourceLanguage(@PathVariable String sourceLang ){
+        return service.findAllBySourceLanguage(sourceLang); 
+    }
+
+    @GetMapping("get/sourceLang/targetLang")
+    public List<Translations> findByAllSourceLangandTargetLang(@RequestParam("source") String sourceLang,
+    @RequestParam("target") String targetLang){
+        return service.findAllBySourceLanguageAndTargetLanguage(sourceLang,targetLang);
+    }
+   
     @PostMapping("translate")
     public String translate(@RequestParam String text){
         return service.translate(text);

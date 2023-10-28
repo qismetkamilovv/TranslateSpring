@@ -10,14 +10,19 @@ public interface TranslationService {
 
     String translate(String word, String targetLang);
 
-    String translate(String sourceLang,String word , String targetLang);
-    
+    String translate(String sourceLang, String word, String targetLang);
+
     List<Translations> getAll();
 
-    Translations getBySourceText(String sourceText) ;
+    Translations findBySourceText(String sourceText);
 
-    Optional<Translations> translationSearch(String sourceText, String targetLang) ;
+    Optional<Translations> findBySourceTextAndTargetLanguage(String word, String targetLang);
 
-    Optional<Translations> findBySourceTextAndTargetLang(String word, String targetLang);
+    List <Translations> findAllByTargetLanguage(String targetLang);
+
+    List <Translations> findAllBySourceLanguage(String sourceLang);
+
+    List <Translations> findAllBySourceLanguageAndTargetLanguage(String sourceLang, String targetLang);
+
 
 }
