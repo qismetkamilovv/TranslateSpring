@@ -16,7 +16,7 @@ public interface TranslationService {
 
     Translations findBySourceText(String sourceText);
 
-    Optional<Translations> findBySourceTextAndTargetLanguage(String word, String targetLang);
+    Translations findBySourceTextAndTargetLanguage(String word, String targetLang);
 
     List <Translations> findAllByTargetLanguage(String targetLang);
 

@@ -4,7 +4,7 @@ POST http://localhost:8080/translate/withTarget?text=success&target=az
 GET http://localhost:8080/all
 
 ###
-GET http://localhost:8080/get/success
+GET http://localhost:8080/get/no
 
 ###
 POST http://localhost:8080/translate?text=not only but also
@@ -19,4 +19,4 @@ GET http://localhost:8080/getSour/en
 GET http://localhost:8080/getTarg/ru
 
 ###
-GET http://localhost:8080/get/sourceLang/targetLang?source=en&target=ru
+GET http://localhost:8080/get/sourceLang/targetLang?source=en&target=fr
