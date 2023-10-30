@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.example.translate.entity.Translations;
@@ -19,11 +18,8 @@ public interface TranslationsRepository extends JpaRepository<Translations, Long
 
     List<Translations> findAllByTargetLanguage(String targetLang) ;
 
-    // @Query("select t from Translations t where t.sourceLanguage = ?")
     List<Translations> findAllBySourceLanguage(String sourcelang) ;
 
     List <Translations> findAllBySourceLanguageAndTargetLanguage(String sourceLang, String targetLang);
 
-    // @Query(value = "select * from translations where target_language = :tLang and source_language = :sLang", nativeQuery = true)
-    List <Translations> selectAllBy(String sLang, String tLang);
 }
