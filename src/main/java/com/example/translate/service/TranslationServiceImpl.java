@@ -81,7 +81,13 @@ public class TranslationServiceImpl implements TranslationService {
 
     @Override
     public List<Translations> findAllBySourceLanguageAndTargetLanguage(String sourceLang, String targetLang) {
-        return repository.findAllBySourceLanguageAndTargetLanguage(sourceLang, targetLang);
+       List <Translations> translations = repository.findAllBySourceLanguageAndTargetLanguage(sourceLang, targetLang);
+       if (translations.isEmpty()) {
+
+        throw new NotFoundException("no result found for given parametrs");
+        
+       }
+       return translations ;
     }
 
 }

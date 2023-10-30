@@ -25,3 +25,10 @@ Spring Boot -da http call-ları necə edəcəksən araşdır;
  // TODO read about Optional class, what it does and how can you use it.
  - refactoring serviceimpl
  - test
+
+
+ -read about handle exceptions
+ -handle not found exception in the rest of methods
+ -spring data jpa querying (linkler wpda)
+ -write delete api to delete translations by source text
+ -how internet works
