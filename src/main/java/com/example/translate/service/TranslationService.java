@@ -24,5 +24,7 @@ public interface TranslationService {
 
     List <Translations> findAllBySourceLanguageAndTargetLanguage(String sourceLang, String targetLang);
 
+    Translations deleteBySourceText(String sourceText) ;
+
 
 }

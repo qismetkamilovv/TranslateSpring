@@ -3,6 +3,7 @@ package com.example.translate.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,8 +45,13 @@ public class TranslationsController {
 
     @GetMapping("get/sourceLang/targetLang")
     public List<Translations> findByAllSourceLangandTargetLang(@RequestParam("source") String sourceLang,
-    @RequestParam("target") String targetLang){
+        @RequestParam("target") String targetLang){
         return service.findAllBySourceLanguageAndTargetLanguage(sourceLang,targetLang);
+    }
+
+    @DeleteMapping("delete/{sourceText}")
+    public Translations deleteBySourceText(@PathVariable String sourceText) {
+        return service.deleteBySourceText(sourceText);
     }
    
     @PostMapping("translate")
@@ -59,10 +65,10 @@ public class TranslationsController {
     }
 
     @PostMapping("translate/withSource")
-    public String translate(@RequestParam String text,
-        @RequestParam("target") String targetLang,
-        @RequestParam("source") String sourceLang){
-        return service.translate(text, targetLang, sourceLang);
+    public String translate(@RequestParam("source") String sourceLang,
+        @RequestParam String text,
+        @RequestParam("target") String targetLang){
+        return service.translate(sourceLang, text, targetLang);
     }
     
 }

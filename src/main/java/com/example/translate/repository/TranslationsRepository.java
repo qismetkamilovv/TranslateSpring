@@ -22,4 +22,6 @@ public interface TranslationsRepository extends JpaRepository<Translations, Long
 
     List <Translations> findAllBySourceLanguageAndTargetLanguage(String sourceLang, String targetLang);
 
+    Optional <Translations> deleteBySourceText(String sourceText) ;
+
 }

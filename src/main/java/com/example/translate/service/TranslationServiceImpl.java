@@ -90,4 +90,9 @@ public class TranslationServiceImpl implements TranslationService {
        return translations ;
     }
 
+    @Override
+    public Translations deleteBySourceText(String sourceText) {
+        return repository.deleteBySourceText(sourceText).orElseThrow(()->new NotFoundException("Deleted")) ;
+    }
+
 }

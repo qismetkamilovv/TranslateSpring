@@ -4,7 +4,7 @@ POST http://localhost:8080/translate/withTarget?text=success&target=az
 GET http://localhost:8080/all
 
 ###
-GET http://localhost:8080/get/no
+GET http://localhost:8080/get/purple
 
 ###
 POST http://localhost:8080/translate?text=far
@@ -20,3 +20,6 @@ GET http://localhost:8080/getTarg/ru
 
 ###
 GET http://localhost:8080/get/sourceLang/targetLang?source=en&target=fr
+
+###
+DELETE http://localhost:8080/delete/home
