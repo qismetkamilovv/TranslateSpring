@@ -91,6 +91,8 @@ public class TranslationServiceImpl implements TranslationService {
     }
 
     @Override
+    // delete operation should NOT return an entity it only return HTTP 200 when deleted successfully
+    // or returns NotFound (HTTP 404) or may be HTTP 500 when something broken
     public Translations deleteBySourceText(String sourceText) {
         // TODO: you should pass a reason to exception not like "Deleted". it means you deleted but you should return "not found"
         return repository.deleteBySourceText(sourceText).orElseThrow(()->new NotFoundException("Deleted")) ;
