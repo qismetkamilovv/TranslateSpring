@@ -50,8 +50,8 @@ public class TranslationsController {
     }
 
     @DeleteMapping("delete/{sourceText}")
-    public Translations deleteBySourceText(@PathVariable String sourceText) {
-        return service.deleteBySourceText(sourceText);
+    public void deleteBySourceText(@PathVariable String sourceText) {
+        service.deleteBySourceText(sourceText);
     }
    
     @PostMapping("translate")
