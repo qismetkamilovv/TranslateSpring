@@ -8,6 +8,8 @@ import com.example.translate.entity.Translations;
 import com.example.translate.exceptions.NotFoundException;
 import com.example.translate.repository.TranslationsRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class TranslationServiceImpl implements TranslationService {
 
@@ -53,7 +55,6 @@ public class TranslationServiceImpl implements TranslationService {
     public List<Translations> getAll() {
         List<Translations> translations = repository.findAll();
         if (translations.isEmpty()) {
-
             throw new NotFoundException("there is no word database");
         }
         return translations;
@@ -64,37 +65,41 @@ public class TranslationServiceImpl implements TranslationService {
     }
 
     @Override
-    public Translations findBySourceTextAndTargetLanguage(String word, String targetLang) {
-        return repository.findBySourceTextAndTargetLanguage(word, targetLang)
-        .orElseThrow(()->new NotFoundException("no result found for given parametrs"));
+    public Optional<Translations> findBySourceTextAndTargetLanguage(String word, String targetLang) {
+        return repository.findBySourceTextAndTargetLanguage(word, targetLang);
+        
     }
 
     @Override
     public List<Translations> findAllByTargetLanguage(String targetLang) {
-        return repository.findAllByTargetLanguage(targetLang);
+        List<Translations> trg = repository.findAllByTargetLanguage(targetLang);
+        if (trg.isEmpty()) {
+            throw new NotFoundException("no result found for given parametrs");
+        }
+        return trg;
     }
 
     @Override
     public List<Translations> findAllBySourceLanguage(String sourceLang) {
-        return repository.findAllBySourceLanguage(sourceLang);
+        List<Translations> srg = repository.findAllBySourceLanguage(sourceLang);
+        if (srg.isEmpty()) {
+            throw new NotFoundException("no result found for given parametrs");
+        }
+        return srg;
     }
 
     @Override
     public List<Translations> findAllBySourceLanguageAndTargetLanguage(String sourceLang, String targetLang) {
-       List <Translations> translations = repository.findAllBySourceLanguageAndTargetLanguage(sourceLang, targetLang);
-       if (translations.isEmpty()) {
-
-        throw new NotFoundException("no result found for given parametrs");
-        
-       }
-       return translations ;
+        List<Translations> translations = repository.findAllBySourceLanguageAndTargetLanguage(sourceLang, targetLang);
+        if (translations.isEmpty()) {
+            throw new NotFoundException("no result found for given parametrs");
+        }
+        return translations;
     }
 
+    @Transactional
     @Override
-    // delete operation should NOT return an entity it only return HTTP 200 when deleted successfully
-    // or returns NotFound (HTTP 404) or may be HTTP 500 when something broken
     public void deleteBySourceText(String sourceText) {
-        // TODO: you should pass a reason to exception not like "Deleted". it means you deleted but you should return "not found"
         repository.deleteBySourceText(sourceText);
     }
 

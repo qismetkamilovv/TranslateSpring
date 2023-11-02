@@ -22,4 +22,4 @@ GET http://localhost:8080/getTarg/ru
 GET http://localhost:8080/get/sourceLang/targetLang?source=en&target=fr
 
 ###
-DELETE http://localhost:8080/delete/home
+DELETE http://localhost:8080/delete/if

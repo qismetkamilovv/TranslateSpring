@@ -1,8 +1,8 @@
 package com.example.translate.controller;
 
 import java.util.List;
-import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,8 +50,9 @@ public class TranslationsController {
     }
 
     @DeleteMapping("delete/{sourceText}")
-    public void deleteBySourceText(@PathVariable String sourceText) {
+    public ResponseEntity<String> deleteBySourceText(@PathVariable String sourceText) {
         service.deleteBySourceText(sourceText);
+        return ResponseEntity.ok().build();
     }
    
     @PostMapping("translate")

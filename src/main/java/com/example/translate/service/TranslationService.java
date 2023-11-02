@@ -1,7 +1,7 @@
 package com.example.translate.service;
 
 import java.util.List;
-
+import java.util.Optional;
 
 import com.example.translate.entity.Translations;
 
@@ -16,7 +16,7 @@ public interface TranslationService {
 
     Translations findBySourceText(String sourceText);
 
-    Translations findBySourceTextAndTargetLanguage(String word, String targetLang);
+    Optional <Translations> findBySourceTextAndTargetLanguage(String word, String targetLang);
 
     List <Translations> findAllByTargetLanguage(String targetLang);
 
