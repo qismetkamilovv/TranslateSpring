@@ -13,7 +13,7 @@ public interface TranslationService {
     String translate(String sourceLang, String word, String targetLang);
 
     List<Translations> getAll();
-
+    
     Translations findBySourceText(String sourceText);
 
     Optional <Translations> findBySourceTextAndTargetLanguage(String word, String targetLang);

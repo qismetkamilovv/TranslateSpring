@@ -42,7 +42,7 @@ public class TranslationServiceImpl implements TranslationService {
         if (trs.isPresent()) {
             return trs.get().getTranslatedText();
         }
-        String translatedTxt = googleClient.translate(sourceLang, word, targetLang);
+        String translatedTxt = googleClient.translate(sourceLang, targetLang, word );
         Translations translations = new Translations();
         translations.setSourceLanguage(sourceLang);
         translations.setSourceText(word);

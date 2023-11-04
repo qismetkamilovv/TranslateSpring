@@ -1,6 +1,6 @@
 POST http://localhost:8080/translate/withTarget?text=success&target=az
 
-###
+### 
 GET http://localhost:8080/all
 
 ###
@@ -10,7 +10,7 @@ GET http://localhost:8080/get/purple
 POST http://localhost:8080/translate?text=far
 
 ###
-POST http://localhost:8080/translate/withSource?source=en&text=home&target=az
+POST http://localhost:8080/translate/withSource?source=en&text=home&target=ru
 
 ###
 GET http://localhost:8080/getSour/en
@@ -23,3 +23,13 @@ GET http://localhost:8080/get/sourceLang/targetLang?source=en&target=fr
 
 ###
 DELETE http://localhost:8080/delete/if
+
+###
+POST  http://localhost:8080/save
+Content-Type:  application/json 
+
+{
+    "sourceLang":"en",
+    "targetLang":"az",
+
+}

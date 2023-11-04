@@ -1,5 +1,7 @@
 package com.example.translate.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,6 +18,7 @@ public class Translations {
     @Column(name = "id")
     private Long Id ; // todo rename to all lowercase
 
+    @JsonProperty("sourceLang")
     @Column(name = "source_language")
     private String sourceLanguage ;
 
