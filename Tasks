@@ -38,3 +38,6 @@ Spring Boot -da http call-ları necə edəcəksən araşdır;
     source text,translated text,target lang,source lang: requestden gelecek
  - how internet works
  - read about lambda function   
+ - create new branch and write method save with entity
+ - create /update restfull api with put method
+ - learn about restfull api

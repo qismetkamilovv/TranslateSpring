@@ -16,18 +16,21 @@ public class Translations {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long Id ; // todo rename to all lowercase
+    private Long Id ; 
 
     @JsonProperty("sourceLang")
     @Column(name = "source_language")
     private String sourceLanguage ;
 
+    @JsonProperty("targetLang")
     @Column(name = "target_language")
     private String targetLanguage ;
 
+    @JsonProperty("sourceText")
     @Column(name = "source_text")
     private String sourceText ;
 
+    @JsonProperty("translatedText")
     @Column(name = "translated_text")
     private String translatedText;
 

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 import com.example.translate.client.GoogleTranslatorApiClient;
+import com.example.translate.dto.CreateTranslationDto;
 import com.example.translate.entity.Translations;
 import com.example.translate.exceptions.NotFoundException;
 import com.example.translate.repository.TranslationsRepository;
@@ -101,6 +102,17 @@ public class TranslationServiceImpl implements TranslationService {
     @Override
     public void deleteBySourceText(String sourceText) {
         repository.deleteBySourceText(sourceText);
+    }
+
+    @Override
+    public void saveData(CreateTranslationDto newTranslation){
+        Translations data = new Translations();
+        data.setSourceLanguage(newTranslation.getSourceLang());
+        data.setTargetLanguage(newTranslation.getTargetLang());
+        data.setSourceText(newTranslation.getSourceText());
+        data.setTranslatedText(newTranslation.getTranslatedText());
+        repository.save(data);
+        
     }
 
 }

@@ -24,4 +24,6 @@ public interface TranslationsRepository extends JpaRepository<Translations, Long
 
     void deleteBySourceText(String sourceText) ;
 
+    // void saveData(String sourceLang, String targetLang, String sourceText, String translatedText ) ;
+
 }

@@ -4,7 +4,7 @@ POST http://localhost:8080/translate/withTarget?text=success&target=az
 GET http://localhost:8080/all
 
 ###
-GET http://localhost:8080/get/purple
+GET http://localhost:8080/get/paper
 
 ###
 POST http://localhost:8080/translate?text=far
@@ -31,5 +31,7 @@ Content-Type:  application/json
 {
     "sourceLang":"en",
     "targetLang":"az",
+    "sourceText":"paper",
+    "translatedText": "kagiz"
 
 }

@@ -3,6 +3,7 @@ package com.example.translate.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.translate.dto.CreateTranslationDto;
 import com.example.translate.entity.Translations;
 
 public interface TranslationService {
@@ -25,6 +26,7 @@ public interface TranslationService {
     List <Translations> findAllBySourceLanguageAndTargetLanguage(String sourceLang, String targetLang);
 
     void deleteBySourceText(String sourceText) ;
-
+    
+    void saveData( CreateTranslationDto newTranslation ) ;
 
 }

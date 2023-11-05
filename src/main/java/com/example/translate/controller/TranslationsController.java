@@ -1,15 +1,22 @@
 package com.example.translate.controller;
 
+import java.security.Provider.Service;
 import java.util.List;
 
+import javax.swing.Spring;
+
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.translate.dto.CreateTranslationDto;
 import com.example.translate.entity.Translations;
 import com.example.translate.service.TranslationService;
 
@@ -71,6 +78,21 @@ public class TranslationsController {
         @RequestParam("target") String targetLang){
         return service.translate(sourceLang, text, targetLang);
     }
-    
+
+    @PostMapping(value = "/save",consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<String> saveData(
+           @RequestBody CreateTranslationDto newTranslation) {
+
+        service.saveData(newTranslation); 
+        return ResponseEntity.ok().build();
+    }
 }
+
+
+
+
+
+
+    
+
  
