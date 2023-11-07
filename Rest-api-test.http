@@ -35,3 +35,6 @@ Content-Type:  application/json
     "translatedText": "kagiz"
 
 }
+
+###
+PUT http://localhost:8080/update?id=8&sourceLang=en&targetLang=az&sourceText=iwenthome&translatedText=menevegeldim

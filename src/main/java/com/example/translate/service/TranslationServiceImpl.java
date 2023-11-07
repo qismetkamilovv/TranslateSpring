@@ -9,6 +9,7 @@ import com.example.translate.entity.Translations;
 import com.example.translate.exceptions.NotFoundException;
 import com.example.translate.repository.TranslationsRepository;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -113,6 +114,34 @@ public class TranslationServiceImpl implements TranslationService {
         data.setTranslatedText(newTranslation.getTranslatedText());
         repository.save(data);
         
+    }
+
+    @Override
+    public Translations updateData(Long id, String sourceLang, String sourceText, String targetLang, String translatedText) {
+        Optional<Translations> existingData =repository.findById(id);
+        if (existingData.isPresent()) {
+            Translations data = existingData.get();
+
+            if (sourceLang != null) {
+                data.setSourceLanguage(sourceLang);
+            }
+
+            if (targetLang != null) {
+                data.setTargetLanguage(targetLang);
+            }
+
+            if (sourceText != null) {
+                data.setSourceText(sourceText);
+            }
+
+            if (translatedText != null) {
+                data.setTranslatedText(translatedText);
+            }
+
+            return repository.save(data);
+        } else {
+            throw new EntityNotFoundException("Data with ID " + id + " not found");
+        }
     }
 
 }
