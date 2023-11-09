@@ -3,6 +3,8 @@ package com.example.translate.service;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
 import com.example.translate.client.GoogleTranslatorApiClient;
 import com.example.translate.dto.CreateTranslationDto;
 import com.example.translate.entity.Translations;
@@ -44,7 +46,7 @@ public class TranslationServiceImpl implements TranslationService {
         if (trs.isPresent()) {
             return trs.get().getTranslatedText();
         }
-        String translatedTxt = googleClient.translate(sourceLang, targetLang, word );
+        String translatedTxt = googleClient.translate(sourceLang, targetLang, word);
         Translations translations = new Translations();
         translations.setSourceLanguage(sourceLang);
         translations.setSourceText(word);
@@ -69,7 +71,7 @@ public class TranslationServiceImpl implements TranslationService {
     @Override
     public Optional<Translations> findBySourceTextAndTargetLanguage(String word, String targetLang) {
         return repository.findBySourceTextAndTargetLanguage(word, targetLang);
-        
+
     }
 
     @Override
@@ -106,36 +108,37 @@ public class TranslationServiceImpl implements TranslationService {
     }
 
     @Override
-    public void saveData(CreateTranslationDto newTranslation){
+    public void saveData(CreateTranslationDto newTranslation) {
         Translations data = new Translations();
         data.setSourceLanguage(newTranslation.getSourceLang());
         data.setTargetLanguage(newTranslation.getTargetLang());
         data.setSourceText(newTranslation.getSourceText());
         data.setTranslatedText(newTranslation.getTranslatedText());
         repository.save(data);
-        
+
     }
 
     @Override
-    public Translations updateData(Long id, String sourceLang, String sourceText, String targetLang, String translatedText) {
-        Optional<Translations> existingData =repository.findById(id);
+    public Translations updateData(Long id, CreateTranslationDto dto) {
+        Optional<Translations> existingData = repository.findById(id);
+
         if (existingData.isPresent()) {
             Translations data = existingData.get();
 
-            if (sourceLang != null) {
-                data.setSourceLanguage(sourceLang);
+            if (StringUtils.hasText(dto.getSourceLang())) {
+                data.setSourceLanguage(dto.getSourceLang());
             }
 
-            if (targetLang != null) {
-                data.setTargetLanguage(targetLang);
+            if (StringUtils.hasText(dto.getTargetLang())) {
+                data.setTargetLanguage(dto.getTargetLang());
             }
 
-            if (sourceText != null) {
-                data.setSourceText(sourceText);
+            if (StringUtils.hasText(dto.getSourceText())) {
+                data.setSourceText(dto.getSourceText());
             }
 
-            if (translatedText != null) {
-                data.setTranslatedText(translatedText);
+            if (StringUtils.hasText(dto.getTranslatedText())) {
+                data.setTranslatedText(dto.getTranslatedText());
             }
 
             return repository.save(data);

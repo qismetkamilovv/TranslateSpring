@@ -42,19 +42,19 @@ public class TranslationsController {
     }
 
     @GetMapping("getTarg/{targetLang}")
-    public List<Translations> findAllByTargetLanguage(@PathVariable String targetLang){
+    public List<Translations> findAllByTargetLanguage(@PathVariable String targetLang) {
         return service.findAllByTargetLanguage(targetLang);
     }
 
     @GetMapping("getSour/{sourceLang}")
-    public List<Translations> findAllBySourceLanguage(@PathVariable String sourceLang ){
-        return service.findAllBySourceLanguage(sourceLang); 
+    public List<Translations> findAllBySourceLanguage(@PathVariable String sourceLang) {
+        return service.findAllBySourceLanguage(sourceLang);
     }
 
     @GetMapping("get/sourceLang/targetLang")
     public List<Translations> findByAllSourceLangandTargetLang(@RequestParam("source") String sourceLang,
-        @RequestParam("target") String targetLang){
-        return service.findAllBySourceLanguageAndTargetLanguage(sourceLang,targetLang);
+            @RequestParam("target") String targetLang) {
+        return service.findAllBySourceLanguageAndTargetLanguage(sourceLang, targetLang);
     }
 
     @DeleteMapping("delete/{sourceText}")
@@ -62,44 +62,37 @@ public class TranslationsController {
         service.deleteBySourceText(sourceText);
         return ResponseEntity.ok().build();
     }
-   
+
     @PostMapping("translate")
-    public String translate(@RequestParam String text){
+    public String translate(@RequestParam String text) {
         return service.translate(text);
     }
 
     @PostMapping("translate/withTarget")
-    public String translate(@RequestParam String text,@RequestParam("target") String targetLang ){
+    public String translate(@RequestParam String text, @RequestParam("target") String targetLang) {
         return service.translate(text, targetLang);
     }
 
     @PostMapping("translate/withSource")
     public String translate(@RequestParam("source") String sourceLang,
-        @RequestParam String text,
-        @RequestParam("target") String targetLang){
+            @RequestParam String text,
+            @RequestParam("target") String targetLang) {
         return service.translate(sourceLang, text, targetLang);
     }
 
-    @PostMapping(value = "/save",consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(value = "/save", consumes = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<String> saveData(
-           @RequestBody CreateTranslationDto newTranslation) {
+            @RequestBody CreateTranslationDto newTranslation) {
 
-        service.saveData(newTranslation); 
+        service.saveData(newTranslation);
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<Translations> updateData(@RequestParam Long id, @RequestParam String sourceLang, @RequestParam String targetLang, @RequestParam String sourceText, @RequestParam String translatedText) {
-        Translations updatedData = service.updateData(id, sourceLang, targetLang, sourceText, translatedText);
+    @PutMapping(value = "update/{id}", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+            MediaType.APPLICATION_JSON_VALUE })
+    public ResponseEntity<Translations> updateData(@PathVariable Long id,
+            @RequestBody CreateTranslationDto dto) {
+        Translations updatedData = service.updateData(id, dto);
         return ResponseEntity.ok(updatedData);
     }
 }
-
-
-
-
-
-
-    
-
- 

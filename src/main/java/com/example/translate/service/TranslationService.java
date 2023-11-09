@@ -29,6 +29,6 @@ public interface TranslationService {
     
     void saveData( CreateTranslationDto newTranslation ) ;
 
-    Translations updateData(Long id, String sourceLang, String sourceText, String targetLang, String translatedText) ;
+    Translations updateData(Long id, CreateTranslationDto dto) ;
 
 }
