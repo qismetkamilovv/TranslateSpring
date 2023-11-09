@@ -140,7 +140,7 @@ public class TranslationServiceImpl implements TranslationService {
 
             return repository.save(data);
         } else {
-            throw new EntityNotFoundException("Data with ID " + id + " not found");
+            throw new NotFoundException("Data with ID " + id + " not found");
         }
     }
 

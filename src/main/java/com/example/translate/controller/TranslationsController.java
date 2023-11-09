@@ -89,7 +89,7 @@ public class TranslationsController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Translations> updateData(@PathVariable Long id, @RequestParam String sourceLang, @RequestParam String targetLang, @RequestParam String sourceText, @RequestParam String translatedText) {
+    public ResponseEntity<Translations> updateData(@RequestParam Long id, @RequestParam String sourceLang, @RequestParam String targetLang, @RequestParam String sourceText, @RequestParam String translatedText) {
         Translations updatedData = service.updateData(id, sourceLang, targetLang, sourceText, translatedText);
         return ResponseEntity.ok(updatedData);
     }

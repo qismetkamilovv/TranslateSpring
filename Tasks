@@ -27,7 +27,7 @@ Spring Boot -da http call-ları necə edəcəksən araşdır;
  - test
 
 
- - read about handle exceptions
+
  - handle not found exception in the rest of methods
  - spring data jpa querying (linkler wpda)
  - write delete api to delete translations by source text
@@ -41,3 +41,4 @@ Spring Boot -da http call-ları necə edəcəksən araşdır;
  - create new branch and write method save with entity
  - create /update restfull api with put method
  - learn about restfull api
+ - read about handle exceptions
