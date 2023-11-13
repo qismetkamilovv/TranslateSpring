@@ -5,16 +5,11 @@ spring data/jpa ;
 2 java annotation ;           https://www.digitalocean.com/community/tutorials/spring-annotations
 3 endpoint ;
 4 Http methods ;
-internet nedir ;
-
 translatorapp bulk fixxing ;
-
 Spring Boot -da http call-ları necə edəcəksən araşdır;
 
 
-
-
-=====================================================================================================
+=======================================================================================================
 - Create new package/folders for res of classes like I did with `service` and `entity`
     for exmaple you can create `repository` package and move Repositry classes to this package ( what how we structure our Spring project)
 - Learn how to read data from `HTTP POST request` body to your `DTO`/`POJO` (Data Transfer Object) / (Plain old java object)
@@ -27,13 +22,13 @@ Spring Boot -da http call-ları necə edəcəksən araşdır;
  - test
 
 
-========================================================================================================
+=======================================================================================================
  - handle not found exception in the rest of methods
  - spring data jpa querying (linkler wpda)
  - write delete api to delete translations by source text
 
 
-==========================================================================================================
+=======================================================================================================
  - create save method for translation 
     source text,translated text,target lang,source lang: requestden gelecek
  - how internet works
@@ -43,7 +38,7 @@ Spring Boot -da http call-ları necə edəcəksən araşdır;
  - learn about restfull api
  - read about handle exceptions
 
-========================================================================================================
+=======================================================================================================
  - how to escape special character in url
  - when save translation return id of save entity
  - read about spring boot data/jpa querying 

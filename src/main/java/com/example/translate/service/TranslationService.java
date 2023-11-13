@@ -30,5 +30,7 @@ public interface TranslationService {
     void saveData( CreateTranslationDto newTranslation ) ;
 
     Translations updateData(Long id, CreateTranslationDto dto) ;
+    
+    
 
 }

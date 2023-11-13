@@ -53,7 +53,9 @@ public class TranslationServiceImpl implements TranslationService {
         translations.setTargetLanguage(targetLang);
         translations.setTranslatedText(translatedTxt);
         repository.save(translations);
-        return translatedTxt;
+        
+        return translatedTxt ;
+        
     }
 
     public List<Translations> getAll() {
