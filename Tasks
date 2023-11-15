@@ -42,3 +42,9 @@ Spring Boot -da http call-ları necə edəcəksən araşdır;
  - how to escape special character in url
  - when save translation return id of save entity
  - read about spring boot data/jpa querying 
+
+
+=======================================================================================================
+ - read about java.util.Optional
+ - functional interface, Lambda function, method referance
+ - instead of using setters use constroctor of create response 

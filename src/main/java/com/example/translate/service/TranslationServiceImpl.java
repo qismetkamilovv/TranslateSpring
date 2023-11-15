@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.example.translate.client.GoogleTranslatorApiClient;
+import com.example.translate.dto.CreateResponse;
 import com.example.translate.dto.CreateTranslationDto;
 import com.example.translate.entity.Translations;
 import com.example.translate.exceptions.NotFoundException;
@@ -30,32 +31,45 @@ public class TranslationServiceImpl implements TranslationService {
     }
 
     @Override
-    public String translate(String text) {
+    public CreateResponse translate(String text) {
         return this.translate(SOURCE_LANG, text, TARGET_LANG);
 
     }
 
     @Override
-    public String translate(String word, String targetLang) {
+    public CreateResponse translate(String word, String targetLang) {
         return this.translate(SOURCE_LANG, word, targetLang);
     }
 
     @Override
-    public String translate(String sourceLang, String word, String targetLang) {
-        Optional<Translations> trs = repository.findBySourceTextAndTargetLanguage(word, targetLang);
-        if (trs.isPresent()) {
-            return trs.get().getTranslatedText();
-        }
-        String translatedTxt = googleClient.translate(sourceLang, targetLang, word);
+    public CreateResponse translate(String sourceLang, String word, String targetLang) {
+
+        return repository.findBySourceTextAndTargetLanguage(word, targetLang)
+        .map(t->{
+            CreateResponse response = new CreateResponse();
+            response.setId(t.getId());
+            response.setTranslatedText(t.getTranslatedText());
+            return response ;
+        }).orElseGet(()->{
+            String translatedTxt = googleClient.translate(sourceLang, targetLang, word);
+            Long id = save(sourceLang, targetLang, word, translatedTxt);
+            CreateResponse response = new CreateResponse();
+            response.setId(id);
+            response.setTranslatedText(translatedTxt);
+            return response;
+        });
+    }
+
+    private Long save(String sLang, String tLang, String text, String trsText) {
         Translations translations = new Translations();
-        translations.setSourceLanguage(sourceLang);
-        translations.setSourceText(word);
-        translations.setTargetLanguage(targetLang);
-        translations.setTranslatedText(translatedTxt);
+        translations.setSourceLanguage(sLang);
+        translations.setSourceText(text);
+        translations.setTargetLanguage(tLang);
+        translations.setTranslatedText(trsText);
+
         repository.save(translations);
-        
-        return translatedTxt ;
-        
+
+        return translations.getId();
     }
 
     public List<Translations> getAll() {

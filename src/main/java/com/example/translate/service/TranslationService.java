@@ -3,15 +3,16 @@ package com.example.translate.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.translate.dto.CreateResponse;
 import com.example.translate.dto.CreateTranslationDto;
 import com.example.translate.entity.Translations;
 
 public interface TranslationService {
-    String translate(String word);
+    CreateResponse translate(String word);
 
-    String translate(String word, String targetLang);
+    CreateResponse translate(String word, String targetLang);
 
-    String translate(String sourceLang, String word, String targetLang);
+    CreateResponse translate(String sourceLang, String word, String targetLang);
 
     List<Translations> getAll();
     
