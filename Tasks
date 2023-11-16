@@ -48,3 +48,11 @@ Spring Boot -da http call-ları necə edəcəksən araşdır;
  - read about java.util.Optional
  - functional interface, Lambda function, method referance
  - instead of using setters use constroctor of create response 
+
+
+### Asking question from CharGPT
+
+- Examples
+    please list important or mst use annotations in Spring boot data/jpa, web and explain them, what they do?
+    can you give list of things or concept or important ascepts of spring boot framework ?
+    bir az daha etrafli izah ede bilersen? zəhmət olmasa nümunələrdə ver
