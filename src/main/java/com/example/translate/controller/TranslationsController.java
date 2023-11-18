@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.translate.dto.CreateResponse;
 import com.example.translate.dto.CreateTranslationDto;
 import com.example.translate.entity.Translations;
 import com.example.translate.service.TranslationService;
@@ -64,17 +65,17 @@ public class TranslationsController {
     }
 
     @PostMapping("translate")
-    public String translate(@RequestParam String text) {
+    public CreateResponse translate(@RequestParam String text) {
         return service.translate(text);
     }
 
     @PostMapping("translate/withTarget")
-    public String translate(@RequestParam String text, @RequestParam("target") String targetLang) {
+    public CreateResponse translate(@RequestParam String text, @RequestParam("target") String targetLang) {
         return service.translate(text, targetLang);
     }
 
     @PostMapping("translate/withSource")
-    public String translate(@RequestParam("source") String sourceLang,
+    public CreateResponse translate(@RequestParam("source") String sourceLang,
             @RequestParam String text,
             @RequestParam("target") String targetLang) {
         return service.translate(sourceLang, text, targetLang);
