@@ -3,17 +3,14 @@ package com.example.translate.service;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
-
 import com.example.translate.client.GoogleTranslatorApiClient;
 import com.example.translate.dto.CreateResponse;
 import com.example.translate.dto.CreateTranslationDto;
 import com.example.translate.entity.Translations;
 import com.example.translate.exceptions.NotFoundException;
 import com.example.translate.repository.TranslationsRepository;
-
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
 
 @Service
 public class TranslationServiceImpl implements TranslationService {
@@ -45,19 +42,19 @@ public class TranslationServiceImpl implements TranslationService {
     public CreateResponse translate(String sourceLang, String word, String targetLang) {
 
         return repository.findBySourceTextAndTargetLanguage(word, targetLang)
-        .map(t->{
-            CreateResponse response = new CreateResponse();
-            response.setId(t.getId());
-            response.setTranslatedText(t.getTranslatedText());
-            return response ;
-        }).orElseGet(()->{
-            String translatedTxt = googleClient.translate(sourceLang, targetLang, word);
-            Long id = save(sourceLang, targetLang, word, translatedTxt);
-            CreateResponse response = new CreateResponse();
-            response.setId(id);
-            response.setTranslatedText(translatedTxt);
-            return response;
-        });
+                .map(t -> {
+                    CreateResponse response = new CreateResponse(null, targetLang);
+                    response.setId(t.getId());
+                    response.setTranslatedText(t.getTranslatedText());
+                    return response;
+                }).orElseGet(() -> {
+                    String translatedTxt = googleClient.translate(sourceLang, targetLang, word);
+                    Long id = save(sourceLang, targetLang, word, translatedTxt);
+                    CreateResponse response = new CreateResponse(id, translatedTxt);
+                    response.setId(id);
+                    response.setTranslatedText(translatedTxt);
+                    return response;
+                });
     }
 
     private Long save(String sLang, String tLang, String text, String trsText) {

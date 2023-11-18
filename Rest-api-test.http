@@ -1,4 +1,4 @@
-POST http://localhost:8080/translate/withTarget?text=success&target=az
+POST http://localhost:8080/translate/withTarget?text=mouse&target=az
 
 ### 
 GET http://localhost:8080/all
@@ -7,10 +7,10 @@ GET http://localhost:8080/all
 GET http://localhost:8080/get/paper
 
 ###
-POST http://localhost:8080/translate?text=far%20home
+POST http://localhost:8080/translate?text=cut
 
 ###
-POST http://localhost:8080/translate/withSource?source=en&text=home&target=ru
+POST http://localhost:8080/translate/withSource?source=en&text=line&target=az
 
 ###
 GET http://localhost:8080/getSour/en

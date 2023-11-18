@@ -1,9 +1,6 @@
 package com.example.translate.controller;
 
-import java.security.Provider.Service;
 import java.util.List;
-
-import javax.swing.Spring;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -70,7 +67,8 @@ public class TranslationsController {
     }
 
     @PostMapping("translate/withTarget")
-    public CreateResponse translate(@RequestParam String text, @RequestParam("target") String targetLang) {
+    public CreateResponse translate(@RequestParam String text,
+            @RequestParam("target") String targetLang) {
         return service.translate(text, targetLang);
     }
 

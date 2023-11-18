@@ -6,6 +6,10 @@ public class CreateResponse {
     private String translatedText;
 
     //TODO create new construktor hansiki bu fiealdleri qebul elesin.
+    public CreateResponse(Long id, String translatedtext){
+        this.id= id;
+        this.translatedText= translatedtext;
+    }
     public Long getId() {
         return id;
     }

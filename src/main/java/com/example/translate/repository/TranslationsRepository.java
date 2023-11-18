@@ -9,21 +9,19 @@ import org.springframework.stereotype.Repository;
 import com.example.translate.entity.Translations;
 
 @Repository
-public interface TranslationsRepository extends JpaRepository<Translations, Long > {
+public interface TranslationsRepository extends JpaRepository<Translations, Long> {
 
-    Optional<Translations>  findBySourceText(String sourceText) ;
+    Optional<Translations> findBySourceText(String sourceText);
     // select*from Translations_app where source_text=?
 
-    Optional <Translations> findBySourceTextAndTargetLanguage(String word, String targetlang);
+    Optional<Translations> findBySourceTextAndTargetLanguage(String word, String targetlang);
 
-    List<Translations> findAllByTargetLanguage(String targetLang) ;
+    List<Translations> findAllByTargetLanguage(String targetLang);
 
-    List<Translations> findAllBySourceLanguage(String sourcelang) ;
+    List<Translations> findAllBySourceLanguage(String sourcelang);
 
-    List <Translations> findAllBySourceLanguageAndTargetLanguage(String sourceLang, String targetLang);
+    List<Translations> findAllBySourceLanguageAndTargetLanguage(String sourceLang, String targetLang);
 
-    void deleteBySourceText(String sourceText) ;
-
-    // void saveData(String sourceLang, String targetLang, String sourceText, String translatedText ) ;
+    void deleteBySourceText(String sourceText);
 
 }
