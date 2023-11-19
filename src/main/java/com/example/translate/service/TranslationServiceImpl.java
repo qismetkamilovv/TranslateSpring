@@ -42,17 +42,13 @@ public class TranslationServiceImpl implements TranslationService {
     public CreateResponse translate(String sourceLang, String word, String targetLang) {
 
         return repository.findBySourceTextAndTargetLanguage(word, targetLang)
-                .map(t -> {
-                    CreateResponse response = new CreateResponse(null, targetLang);
-                    response.setId(t.getId());
-                    response.setTranslatedText(t.getTranslatedText());
+                .map((Translations t) -> {
+                    CreateResponse response = new CreateResponse(t);
                     return response;
                 }).orElseGet(() -> {
                     String translatedTxt = googleClient.translate(sourceLang, targetLang, word);
                     Long id = save(sourceLang, targetLang, word, translatedTxt);
                     CreateResponse response = new CreateResponse(id, translatedTxt);
-                    response.setId(id);
-                    response.setTranslatedText(translatedTxt);
                     return response;
                 });
     }

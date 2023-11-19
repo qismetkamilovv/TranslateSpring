@@ -50,6 +50,10 @@ Spring Boot -da http call-ları necə edəcəksən araşdır;
  - instead of using setters use constroctor of create response 
 
 
+=======================================================================================================
+ - read about Spring security 
+ - create custom functional interface with abstract mehod and use this as lambda 
+ 
 
 
 

@@ -1,15 +1,22 @@
 package com.example.translate.dto;
 
+import com.example.translate.entity.Translations;
+
 public class CreateResponse {
 
     private Long id;
     private String translatedText;
 
-    //TODO create new construktor hansiki bu fiealdleri qebul elesin.
-    public CreateResponse(Long id, String translatedtext){
-        this.id= id;
-        this.translatedText= translatedtext;
+    public CreateResponse(Translations translations) {
+        this.id = translations.getId();
+        this.translatedText = translations.getTranslatedText();
     }
+
+    public CreateResponse(Long id, String translatedtext) {
+        this.id = id;
+        this.translatedText = translatedtext;
+    }
+
     public Long getId() {
         return id;
     }
