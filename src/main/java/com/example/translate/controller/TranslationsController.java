@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.translate.dto.CreateResponse;
 import com.example.translate.dto.CreateTranslationDto;
 import com.example.translate.entity.Translations;
+import com.example.translate.entity.UserInfo;
 import com.example.translate.service.TranslationService;
 
 @RestController
@@ -82,7 +82,6 @@ public class TranslationsController {
     @PostMapping(value = "/save", consumes = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<String> saveData(
             @RequestBody CreateTranslationDto newTranslation) {
-
         service.saveData(newTranslation);
         return ResponseEntity.ok().build();
     }
@@ -93,5 +92,10 @@ public class TranslationsController {
             @RequestBody CreateTranslationDto dto) {
         Translations updatedData = service.updateData(id, dto);
         return ResponseEntity.ok(updatedData);
+    }
+
+    @PutMapping(value = "/new", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public String addNewuser (@RequestBody UserInfo userInfo){
+        return service.addUser(userInfo);
     }
 }

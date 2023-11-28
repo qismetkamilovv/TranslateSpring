@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.example.translate.dto.CreateResponse;
 import com.example.translate.dto.CreateTranslationDto;
 import com.example.translate.entity.Translations;
+import com.example.translate.entity.UserInfo;
 
 public interface TranslationService {
     CreateResponse translate(String word);
@@ -31,6 +32,8 @@ public interface TranslationService {
     void saveData( CreateTranslationDto newTranslation ) ;
 
     Translations updateData(Long id, CreateTranslationDto dto) ;
+
+    String addUser(UserInfo userInfo) ;
     
     
 

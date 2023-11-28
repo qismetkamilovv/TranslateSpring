@@ -47,4 +47,14 @@ Content-Type: application/json
     "translatedText": "men eve getdim"
 }
 
+###
+POST http://localhost:8080/new
+Content-Type: application/json
 
+{
+    "firstname":"Qismet",
+    "lastname": "Kamilov",
+    "mail":"qismet600@gmail.com",
+    "password": "qismet123",
+    "role":"Admin"
+}
