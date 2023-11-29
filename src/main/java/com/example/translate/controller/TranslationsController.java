@@ -94,7 +94,7 @@ public class TranslationsController {
         return ResponseEntity.ok(updatedData);
     }
 
-    @PutMapping(value = "/new", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(value = "/new", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public String addNewuser (@RequestBody UserInfo userInfo){
         return service.addUser(userInfo);
     }

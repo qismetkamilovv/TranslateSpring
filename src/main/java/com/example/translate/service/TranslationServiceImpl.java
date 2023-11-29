@@ -25,7 +25,7 @@ public class TranslationServiceImpl implements TranslationService {
 
     private final GoogleTranslatorApiClient googleClient;
     private final TranslationsRepository repository;
-
+    //TODO add the following dependencies to constructor
     @Autowired
     private UserInfoRepository repositoryInfo ;
 
