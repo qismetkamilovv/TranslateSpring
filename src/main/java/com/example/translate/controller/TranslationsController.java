@@ -35,7 +35,7 @@ public class TranslationsController {
     }
 
     @GetMapping("get/{sourceText}")
-    public Translations findBysourceText(@PathVariable String sourceText) {
+    public List<Translations> findBysourceText(@PathVariable String sourceText) {
         return service.findBySourceText(sourceText);
     }
 
@@ -94,8 +94,5 @@ public class TranslationsController {
         return ResponseEntity.ok(updatedData);
     }
 
-    @PostMapping(value = "/new", consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public String addNewuser (@RequestBody UserInfo userInfo){
-        return service.addUser(userInfo);
-    }
+    
 }

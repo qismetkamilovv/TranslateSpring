@@ -26,12 +26,7 @@ public class TranslationServiceImpl implements TranslationService {
     private final GoogleTranslatorApiClient googleClient;
     private final TranslationsRepository repository;
     //TODO add the following dependencies to constructor
-    @Autowired
-    private UserInfoRepository repositoryInfo ;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder ;
-
+   
     public TranslationServiceImpl(GoogleTranslatorApiClient googleClient,
             TranslationsRepository translationsRepository) {
         this.repository = translationsRepository;
@@ -84,8 +79,8 @@ public class TranslationServiceImpl implements TranslationService {
         return translations;
     }
 
-    public Translations findBySourceText(String sourceText) {
-        return repository.findBySourceText(sourceText).orElseThrow(NotFoundException::new);
+    public List<Translations> findBySourceText(String sourceText) {
+        return repository.findBySourceText(sourceText);
     }
 
     @Override
@@ -167,11 +162,6 @@ public class TranslationServiceImpl implements TranslationService {
         }
     }
 
-    @Override
-    public String addUser(UserInfo userInfo) {
-        userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
-        repositoryInfo.save(userInfo);
-        return "user added to system" ;
-    }
+    
 
 }

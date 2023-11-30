@@ -11,7 +11,7 @@ import com.example.translate.entity.Translations;
 @Repository
 public interface TranslationsRepository extends JpaRepository<Translations, Long> {
 
-    Optional<Translations> findBySourceText(String sourceText);
+    List<Translations> findBySourceText(String sourceText);
     // select*from Translations_app where source_text=?
 
     Optional<Translations> findBySourceTextAndTargetLanguage(String word, String targetlang);
