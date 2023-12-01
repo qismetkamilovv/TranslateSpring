@@ -78,7 +78,7 @@ public class TranslationsController {
         return service.translate(sourceLang, text, targetLang);
     }
 
-    @PostMapping(value = "/save", consumes = { MediaType.APPLICATION_JSON_VALUE })
+    @PostMapping(value = "save", consumes = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<String> saveData(
             @RequestBody CreateTranslationDto newTranslation) {
         service.saveData(newTranslation);

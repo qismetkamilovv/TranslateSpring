@@ -11,6 +11,7 @@ import com.example.translate.dto.CreateResponse;
 import com.example.translate.dto.CreateTranslationDto;
 import com.example.translate.entity.Translations;
 import com.example.translate.exceptions.NotFoundException;
+import com.example.translate.exceptions.UnexpectedException;
 import com.example.translate.repository.TranslationsRepository;
 
 @Service
@@ -75,7 +76,11 @@ public class TranslationServiceImpl implements TranslationService {
     }
 
     public List<Translations> findBySourceText(String sourceText) {
-        return repository.findBySourceText(sourceText);
+        List<Translations> idk =  repository.findBySourceText(sourceText);
+        if(idk.isEmpty()){
+            throw new UnexpectedException("there is no word in the database similar this");
+        }
+        return idk ;
     }
 
     @Override

@@ -65,7 +65,12 @@ Spring Boot -da http call-ları necə edəcəksən araşdır;
  - read about Bcrypt algorithms
  - read about csrf
  - read about Oauth 2
+
+
+=======================================================================================================
  - JWT read about it
+ - resolve review issues
+ - use google translate dependency instead of cli version
  
 
  

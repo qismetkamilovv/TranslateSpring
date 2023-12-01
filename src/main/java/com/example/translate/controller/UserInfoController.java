@@ -24,7 +24,7 @@ public class UserInfoController {
         //TODO implement me
     }
 
-    @PostMapping(value = "/new", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(value = "new", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public String addNewuser (@RequestBody UserInfo userInfo){
         return userInfoService.addUser(userInfo);
     }
