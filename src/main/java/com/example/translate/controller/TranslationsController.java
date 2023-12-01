@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.translate.dto.CreateResponse;
 import com.example.translate.dto.CreateTranslationDto;
 import com.example.translate.entity.Translations;
-import com.example.translate.entity.UserInfo;
 import com.example.translate.service.TranslationService;
 
 @RestController

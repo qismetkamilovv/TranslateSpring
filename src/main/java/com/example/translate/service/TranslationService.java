@@ -6,7 +6,6 @@ import java.util.Optional;
 import com.example.translate.dto.CreateResponse;
 import com.example.translate.dto.CreateTranslationDto;
 import com.example.translate.entity.Translations;
-import com.example.translate.entity.UserInfo;
 
 public interface TranslationService {
     CreateResponse translate(String word);

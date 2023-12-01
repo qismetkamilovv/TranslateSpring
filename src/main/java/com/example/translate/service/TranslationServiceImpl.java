@@ -3,8 +3,6 @@ package com.example.translate.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -12,10 +10,8 @@ import com.example.translate.client.GoogleTranslatorApiClient;
 import com.example.translate.dto.CreateResponse;
 import com.example.translate.dto.CreateTranslationDto;
 import com.example.translate.entity.Translations;
-import com.example.translate.entity.UserInfo;
 import com.example.translate.exceptions.NotFoundException;
 import com.example.translate.repository.TranslationsRepository;
-import com.example.translate.repository.UserInfoRepository;
 
 @Service
 public class TranslationServiceImpl implements TranslationService {
@@ -25,8 +21,7 @@ public class TranslationServiceImpl implements TranslationService {
 
     private final GoogleTranslatorApiClient googleClient;
     private final TranslationsRepository repository;
-    //TODO add the following dependencies to constructor
-   
+
     public TranslationServiceImpl(GoogleTranslatorApiClient googleClient,
             TranslationsRepository translationsRepository) {
         this.repository = translationsRepository;
@@ -161,7 +156,5 @@ public class TranslationServiceImpl implements TranslationService {
             throw new NotFoundException("Data with ID " + id + " not found");
         }
     }
-
-    
 
 }

@@ -12,13 +12,10 @@ import com.example.translate.service.UserInfoService;
 @RestController
 public class UserInfoController {
     
-   
+    @Autowired
     private UserInfoService userInfoService ;
 
-    public UserInfoController(UserInfoService userInfoService){
-        this.userInfoService = userInfoService ;
-    }
-
+    
     public void signUp(){
         //TODO implement me
     }
