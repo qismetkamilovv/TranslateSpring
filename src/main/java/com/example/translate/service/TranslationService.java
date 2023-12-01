@@ -16,7 +16,7 @@ public interface TranslationService {
 
     List<Translations> getAll();
     
-    Translations findBySourceText(String sourceText);
+    List <Translations>findBySourceText(String sourceText);
 
     Optional <Translations> findBySourceTextAndTargetLanguage(String word, String targetLang);
 
@@ -31,6 +31,8 @@ public interface TranslationService {
     void saveData( CreateTranslationDto newTranslation ) ;
 
     Translations updateData(Long id, CreateTranslationDto dto) ;
+
+    
     
     
 

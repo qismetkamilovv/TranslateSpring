@@ -2,6 +2,7 @@ package com.example.translate.service;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -10,6 +11,7 @@ import com.example.translate.dto.CreateResponse;
 import com.example.translate.dto.CreateTranslationDto;
 import com.example.translate.entity.Translations;
 import com.example.translate.exceptions.NotFoundException;
+import com.example.translate.exceptions.UnexpectedException;
 import com.example.translate.repository.TranslationsRepository;
 
 @Service
@@ -73,8 +75,12 @@ public class TranslationServiceImpl implements TranslationService {
         return translations;
     }
 
-    public Translations findBySourceText(String sourceText) {
-        return repository.findBySourceText(sourceText).orElseThrow(NotFoundException::new);
+    public List<Translations> findBySourceText(String sourceText) {
+        List<Translations> idk =  repository.findBySourceText(sourceText);
+        if(idk.isEmpty()){
+            throw new UnexpectedException("there is no word in the database similar this");
+        }
+        return idk ;
     }
 
     @Override

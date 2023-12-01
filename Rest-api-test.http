@@ -4,7 +4,7 @@ POST http://localhost:8080/translate/withTarget?text=mouse&target=az
 GET http://localhost:8080/all
 
 ###
-GET http://localhost:8080/get/cut
+GET http://localhost:8080/get/bed
 
 ###
 POST http://localhost:8080/translate?text=cut
@@ -13,7 +13,7 @@ POST http://localhost:8080/translate?text=cut
 POST http://localhost:8080/translate/withSource?source=en&text=line&target=az
 
 ###
-GET http://localhost:8080/getSour/en
+GET http://localhost:8080/getSour/en?username=qismet&password=qismet123
 
 ###
 GET http://localhost:8080/getTarg/ru
@@ -47,4 +47,14 @@ Content-Type: application/json
     "translatedText": "men eve getdim"
 }
 
+###
+POST http://localhost:8080/new
+Content-Type: application/json
 
+{
+    "firstname":"Qismet",
+    "lastname": "Kamilov",
+    "mail":"qismet600@gmail.com",
+    "password": "qismet123",
+    "role":"Admin"
+}

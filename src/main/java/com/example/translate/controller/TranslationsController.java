@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.translate.dto.CreateResponse;
 import com.example.translate.dto.CreateTranslationDto;
 import com.example.translate.entity.Translations;
@@ -35,7 +34,7 @@ public class TranslationsController {
     }
 
     @GetMapping("get/{sourceText}")
-    public Translations findBysourceText(@PathVariable String sourceText) {
+    public List<Translations> findBysourceText(@PathVariable String sourceText) {
         return service.findBySourceText(sourceText);
     }
 
@@ -79,10 +78,9 @@ public class TranslationsController {
         return service.translate(sourceLang, text, targetLang);
     }
 
-    @PostMapping(value = "/save", consumes = { MediaType.APPLICATION_JSON_VALUE })
+    @PostMapping(value = "save", consumes = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<String> saveData(
             @RequestBody CreateTranslationDto newTranslation) {
-
         service.saveData(newTranslation);
         return ResponseEntity.ok().build();
     }
@@ -94,4 +92,6 @@ public class TranslationsController {
         Translations updatedData = service.updateData(id, dto);
         return ResponseEntity.ok(updatedData);
     }
+
+    
 }
