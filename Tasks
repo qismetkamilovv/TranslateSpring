@@ -71,7 +71,9 @@ Spring Boot -da http call-ları necə edəcəksən araşdır;
  - JWT read about it
  - resolve review issues
  - use google translate dependency instead of cli version
- 
+ - java Static keyword 
+    class, method, instance field, block
+ - all get methods to be open and all post, put, apis to be secure  
 
  
 
