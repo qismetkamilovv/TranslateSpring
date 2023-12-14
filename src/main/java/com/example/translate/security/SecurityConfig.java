@@ -1,54 +1,57 @@
 package com.example.translate.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.example.translate.repository.UserRepository;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    @Bean
-    // authentication
-    public UserDetailsService userDetailsService() {
-        // UserDetails admin = User.withUsername("qismet")
-        //         .password(encoder.encode("qismet123"))
-        //         .roles("ADMIN")
-        //         .build();
-        // UserDetails user = User.withUsername("ismet")
-        //         .password(encoder.encode("ismet123"))
-        //         .roles("USER")
-        //         .build();
-        // return new InMemoryUserDetailsManager(admin, user);
-        return new UserInfoUserDetailsService() ;
-      
-    }
+    @Autowired
+    private UserRepository userRepository;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http.csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(req -> req.requestMatchers("/auth/**").permitAll()
+                        .anyRequest().authenticated())
+                .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authenticationProvider(authenticationProvider())
+                .build();
+    }
 
-        // http.authorizeHttpRequests((requests) -> requests
-        //         .requestMatchers("/all", "/get/{sourceText}","/new").permitAll()
-        //         .anyRequest().authenticated())
-        //         .logout((logout) -> logout.permitAll());
+    @Bean
+    public UserDetailsService userDetailsService() {
+        // asagidaki return ondan asagidaki anonimus klasi evez eliyir.
+        // return username->userRepository.findByMail(username);
 
-        // return http.build();
+        return new UserDetailsService() {
 
-        return http.csrf().disable()
-                .authorizeHttpRequests()
-                .requestMatchers("/all", "/get/{sourceText}","/new").permitAll()
-                .and()
-                .authorizeHttpRequests().requestMatchers("/**")
-                .authenticated().and().formLogin().and().build();
+            @Override
+            public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+                return userRepository.findByMail(username);
+            }
+
+        };
     }
 
     @Bean
@@ -57,11 +60,16 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationProvider authenticationProvider(){
+    public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userDetailsService());
         authenticationProvider.setPasswordEncoder(passwordEncoder());
-        return authenticationProvider ;
+        return authenticationProvider;
 
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
     }
 }
