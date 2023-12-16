@@ -32,8 +32,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(req -> req.requestMatchers("/auth/**").permitAll()
-                        .anyRequest().authenticated())
+                .authorizeHttpRequests(req -> req.requestMatchers("/auth/**", "all"
+                ,"get/{sourceText}", "translate", "translate/withTarget", "translate/withSource", "getSour/{sourceLang}", "getTarg/{targetLang}").permitAll()
+                        .requestMatchers("delete/{sourceText}", "save", "update/{id}").authenticated())
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
                 .build();
