@@ -19,7 +19,7 @@ import com.example.translate.entity.Translations;
 import com.example.translate.service.TranslationService;
 
 @RestController
-@RequestMapping
+@RequestMapping("dictionary")
 public class TranslationsController {
 
     private TranslationService service;
