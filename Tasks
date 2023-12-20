@@ -75,7 +75,11 @@ Spring Boot -da http call-ları necə edəcəksən araşdır;
  - java method references
  - permit all Get requests and authenticate Post, Put, Delete endpoints
  - use google translate dependency instead of cli version
- 
+
+
+=======================================================================================================
+ - how to junit test 
+ - Leetcode mesele isle min 6 
  
 
  
