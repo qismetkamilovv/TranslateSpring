@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
-import com.example.translate.client.GoogleTranslatorApiClient;
+
+import com.example.translate.client.GoogleTranslateApiClient;
+import com.example.translate.client.GoogleTranslatorApiClientOld;
 import com.example.translate.dto.CreateResponse;
 import com.example.translate.dto.CreateTranslationDto;
 import com.example.translate.entity.Translations;
@@ -20,10 +22,10 @@ public class TranslationServiceImpl implements TranslationService {
     public final static String SOURCE_LANG = "en";
     public final static String TARGET_LANG = "az";
 
-    private final GoogleTranslatorApiClient googleClient;
+    private final GoogleTranslateApiClient googleClient;
     private final TranslationsRepository repository;
 
-    public TranslationServiceImpl(GoogleTranslatorApiClient googleClient,
+    public TranslationServiceImpl(GoogleTranslateApiClient googleClient,
             TranslationsRepository translationsRepository) {
         this.repository = translationsRepository;
         this.googleClient = googleClient;

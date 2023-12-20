@@ -7,7 +7,7 @@ GET http://localhost:8080/all
 GET http://localhost:8080/get/bed
 
 ###
-POST http://localhost:8080/translate?text=cut
+POST http://localhost:8080/dictionary/translate?text=black
 
 ###
 POST http://localhost:8080/translate/withSource?source=en&text=line&target=az
