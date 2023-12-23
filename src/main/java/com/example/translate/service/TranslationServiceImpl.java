@@ -78,7 +78,7 @@ public class TranslationServiceImpl implements TranslationService {
     public List<Translations> findBySourceText(String sourceText) {
         List<Translations> idk =  repository.findBySourceText(sourceText);
         if(idk.isEmpty()){
-            throw new UnexpectedException("there is no word in the database similar this");
+            throw new NotFoundException("there is no word in the database similar this");
         }
         return idk ;
     }
