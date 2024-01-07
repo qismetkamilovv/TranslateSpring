@@ -11,7 +11,6 @@ import com.example.translate.dto.CreateResponse;
 import com.example.translate.dto.CreateTranslationDto;
 import com.example.translate.entity.Translations;
 import com.example.translate.exceptions.NotFoundException;
-import com.example.translate.exceptions.UnexpectedException;
 import com.example.translate.repository.TranslationsRepository;
 
 @Service
@@ -67,7 +66,7 @@ public class TranslationServiceImpl implements TranslationService {
         return translations.getId();
     }
 
-    public List<Translations> getAll() {
+    public List<Translations> getAll() {    
         List<Translations> translations = repository.findAll();
         if (translations.isEmpty()) {
             throw new NotFoundException("there is no word database");

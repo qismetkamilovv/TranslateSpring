@@ -8,6 +8,7 @@ import static org.mockito.Mockito.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import com.example.translate.client.GoogleTranslatorApiClient;
+import com.example.translate.dto.CreateResponse;
 import com.example.translate.dto.CreateTranslationDto;
 import com.example.translate.entity.Translations;
 import com.example.translate.exceptions.NotFoundException;
@@ -31,6 +34,9 @@ public class TranslationServiceTest {
 
     @MockBean
     private TranslationsRepository translationsRepository;
+    
+    @MockBean
+    private GoogleTranslatorApiClient googleClient ;
 
     @Test
     public void shouldReturnList_whenFindBySourceText_givenSourceTextExist() {
@@ -207,5 +213,32 @@ public class TranslationServiceTest {
         assertEquals(translationDto.getSourceText(), translations.getSourceText());
         assertEquals(translationDto.getTranslatedText(), translations.getTranslatedText());
 
+    }
+
+    @Test
+    public void shouldTranslate_whenTranslate_givenSourceTextSourceAndTargetLanguage(){
+        // given
+        String targetLang = "az";
+        String sourceLang = "en";
+        String sourceText = "cut";
+        Translations translations = new Translations();
+        translations.setId(1L);
+        translations.setSourceLanguage(sourceLang);
+        translations.setTargetLanguage(targetLang);
+        translations.setSourceText(sourceText);
+        translations.setTranslatedText("kesmek");
+        CreateResponse expected = new CreateResponse(1L, "kesmek");
+        when(translationsRepository.findBySourceTextAndTargetLanguage(sourceText, targetLang))
+        .thenReturn(Optional.of(translations));
+
+        // when
+        CreateResponse actual = translationService.translate(sourceLang, sourceText, targetLang);
+        
+        // then
+        assertEquals(expected.getId(), actual.getId());
+        assertEquals(expected.getTranslatedText(), actual.getTranslatedText());
+        verify(translationsRepository, times(1))
+        .findBySourceTextAndTargetLanguage(sourceText,targetLang);
+         
     }
 }
