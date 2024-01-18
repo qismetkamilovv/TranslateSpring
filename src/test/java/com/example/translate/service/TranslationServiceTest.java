@@ -34,9 +34,9 @@ public class TranslationServiceTest {
 
     @MockBean
     private TranslationsRepository translationsRepository;
-    
+
     @MockBean
-    private GoogleTranslatorApiClient googleClient ;
+    private GoogleTranslatorApiClient googleClient;
 
     @Test
     public void shouldReturnList_whenFindBySourceText_givenSourceTextExist() {
@@ -216,7 +216,7 @@ public class TranslationServiceTest {
     }
 
     @Test
-    public void shouldTranslate_whenTranslate_givenSourceTextSourceAndTargetLanguage(){
+    public void shouldTranslate_whenTranslate_givenSourceTextSourceAndTargetLanguage() {
         // given
         String targetLang = "az";
         String sourceLang = "en";
@@ -229,16 +229,47 @@ public class TranslationServiceTest {
         translations.setTranslatedText("kesmek");
         CreateResponse expected = new CreateResponse(1L, "kesmek");
         when(translationsRepository.findBySourceTextAndTargetLanguage(sourceText, targetLang))
-        .thenReturn(Optional.of(translations));
+                .thenReturn(Optional.of(translations));
 
         // when
         CreateResponse actual = translationService.translate(sourceLang, sourceText, targetLang);
-        
+
         // then
         assertEquals(expected.getId(), actual.getId());
         assertEquals(expected.getTranslatedText(), actual.getTranslatedText());
         verify(translationsRepository, times(1))
-        .findBySourceTextAndTargetLanguage(sourceText,targetLang);
-         
+                .findBySourceTextAndTargetLanguage(sourceText, targetLang);
+
+    }
+
+    @Test
+    public void shouldTranslate_whenTranslate_givenWordTargetLangSourText() {
+        // given
+        String targetLang = "az";
+        String sourceLang = "en";
+        String sourceText = "cut";
+        String translatedText = "kesmek";
+        Translations translations = new Translations();
+        translations.setId(1L);
+        translations.setSourceLanguage(sourceLang);
+        translations.setTargetLanguage(targetLang);
+        translations.setSourceText(sourceText);
+        translations.setTranslatedText(translatedText);
+        CreateResponse expected = new CreateResponse(1L, "kesmek");
+        when(translationsRepository.findBySourceTextAndTargetLanguage(sourceText, targetLang))
+                .thenReturn(Optional.empty());
+        when(googleClient.translate(sourceLang, targetLang, sourceText)).thenReturn(translatedText);
+        when(translationsRepository.save(translations)).thenReturn(translations);
+        // when
+
+        CreateResponse actual = translationService.translate(sourceLang, sourceText, targetLang);
+
+        // then
+        assertEquals(expected.getTranslatedText(), actual.getTranslatedText());
+        verify(googleClient, times(1))
+                .translate(sourceLang, targetLang, sourceText);
+        verify(translationsRepository, times(1)).findBySourceTextAndTargetLanguage(sourceText, targetLang);
+        verify(translationsRepository, times(1)).save(any(Translations.class));
+
     }
 }
