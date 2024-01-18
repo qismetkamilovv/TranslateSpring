@@ -38,12 +38,12 @@ public class TranslationsController {
         return service.findBySourceText(sourceText);
     }
 
-    @GetMapping("getTarg/{targetLang}")
+    @GetMapping("byTarget/{targetLang}")
     public List<Translations> findAllByTargetLanguage(@PathVariable String targetLang) {
         return service.findAllByTargetLanguage(targetLang);
     }
 
-    @GetMapping("getSour/{sourceLang}")
+    @GetMapping("bySource/{sourceLang}")
     public List<Translations> findAllBySourceLanguage(@PathVariable String sourceLang) {
         return service.findAllBySourceLanguage(sourceLang);
     }
@@ -62,6 +62,7 @@ public class TranslationsController {
 
     @PostMapping("translate")
     public CreateResponse translate(@RequestParam String text) {
+        System.out.println("catdi");
         return service.translate(text);
     }
 

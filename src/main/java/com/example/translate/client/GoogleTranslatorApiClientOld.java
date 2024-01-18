@@ -13,11 +13,11 @@ import com.example.translate.dto.TranslationRequest;
 import com.example.translate.dto.TranslationResponse;
 
 @Component
-public class GoogleTranslatorApiClient {
+public class GoogleTranslatorApiClientOld {
 
     private final RestTemplate restTemplate;
 
-    public GoogleTranslatorApiClient(RestTemplate restTemplate) {
+    public GoogleTranslatorApiClientOld(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
