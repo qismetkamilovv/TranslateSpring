@@ -4,7 +4,7 @@ POST http://localhost:8080/translate/withTarget?text=mouse&target=az
 GET http://localhost:8080/dictionary/all
 
 ###
-GET http://localhost:8080/get/bed
+GET http://localhost:8080/dictionary/get/bed
 
 ###
 POST http://localhost:8080/dictionary/translate?text=black
@@ -16,13 +16,13 @@ POST http://localhost:8080/translate/withSource?source=en&text=line&target=az
 GET http://localhost:8080/getSour/en?username=qismet&password=qismet123
 
 ###
-GET http://localhost:8080/getTarg/ru
+GET http://localhost:8080/dictionary/getTarg/ru
 
 ###
 GET http://localhost:8080/get/sourceLang/targetLang?source=en&target=fr
 
 ###
-DELETE http://localhost:8080/delete/if
+DELETE http://localhost:8080/dictionary/delete/if
 
 ###
 POST  http://localhost:8080/save

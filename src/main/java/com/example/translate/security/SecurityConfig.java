@@ -33,10 +33,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers("/auth/**", "/dictionary/all", "get/{sourceText}", "translate", "translate/withTarget",
-                                "translate/withSource", "getSour/{sourceLang}", "getTarg/{targetLang}")
+                        .requestMatchers("/auth/**", "/dictionary/all", "/dictionary/get/{sourceText}", "/dictionary/translate", "/dictionary/translate/withTarget",
+                                "/dictionary/translate/withSource", "/dictionary/getSour/{sourceLang}", "/dictionary/getTarg/{targetLang}")
                         .permitAll()
-                        .requestMatchers("delete/{sourceText}", "save", "update/{id}")
+                        .requestMatchers("/dictionary/delete/{sourceText}", "/dictionary/save", "/dictionary/update/{id}")
                         .authenticated())
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

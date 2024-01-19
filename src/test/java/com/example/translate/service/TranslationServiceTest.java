@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import com.example.translate.client.GoogleTranslatorApiClient;
+import com.example.translate.client.GoogleTranslatorApiClientOld;
 import com.example.translate.dto.CreateResponse;
 import com.example.translate.dto.CreateTranslationDto;
 import com.example.translate.entity.Translations;
@@ -36,7 +36,7 @@ public class TranslationServiceTest {
     private TranslationsRepository translationsRepository;
 
     @MockBean
-    private GoogleTranslatorApiClient googleClient;
+    private GoogleTranslatorApiClientOld googleClient;
 
     @Test
     public void shouldReturnList_whenFindBySourceText_givenSourceTextExist() {
